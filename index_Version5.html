@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>كرة القدم — قاموس مصور عربي</title>
+  <style>
+    :root{
+      --page-bg: linear-gradient(180deg,#fbf1d6 0%, #f7d88a 60%);
+      --card-radius: 14px;
+      --shadow: 0 10px 30px rgba(20,20,40,0.12);
+      --text-dark: #123;
+      --tile-min: 220px;
+      --gap: 14px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Segoe UI", "Noto Naskh Arabic", Tahoma, Arial, sans-serif;
+      background:var(--page-bg);
+      color:var(--text-dark);
+      padding:28px;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    header{
+      text-align:center;
+      margin-bottom:18px;
+    }
+    .ball{ font-size:44px; display:inline-block; transform: translateY(4px); }
+    .main-title{ font-size:36px; margin:6px 0; font-weight:900; }
+    .subtitle{ font-size:15px; color:#222; opacity:0.85; }
+
+    .sections{ display:flex; flex-direction:column; gap:20px; margin-top:12px; }
+
+    .section{
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding:12px;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(0,0,0,0.05);
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .section-head h2{ margin:0; font-size:18px; font-weight:800; }
+    .section-head .eng{ font-size:12px; color:#214; opacity:0.75; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(var(--tile-min), 1fr));
+      gap: var(--gap);
+    }
+
+    .tile{
+      border-radius: 12px;
+      padding:14px;
+      min-height:120px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease;
+      user-select:none;
+      position:relative;
+      text-align:center;
+      color:#fff;
+    }
+
+    .tile:active{ transform: translateY(2px) scale(.998); }
+    .tile:focus{ outline:3px solid rgba(0,0,0,0.06); transform: translateY(-4px); }
+
+    .tile.noun { background: linear-gradient(180deg,#4fc3f7,#2b99e6); }
+    .tile.verb { background: linear-gradient(180deg,#7be582,#43c06b); }
+    .tile.adj  { background: linear-gradient(180deg,#ffd98a,#ffb74d); color:#1b1b1b; }
+    .tile.phr  { background: linear-gradient(180deg,#c6a6ff,#8c5bff); }
+
+    .emoji{ font-size:34px; margin-bottom:4px; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.14)); }
+    .arabic{ font-size:18px; font-weight:800; line-height:1.15; padding:0 6px; word-break:break-word; }
+    .english{ font-size:13px; opacity:0.95; margin-top:6px; }
+
+    .hint{ font-size:12px; opacity:0.95; position:absolute; left:10px; bottom:10px; color:rgba(255,255,255,0.95); }
+
+    @media (max-width:520px){
+      :root{ --tile-min:180px; }
+      .main-title{ font-size:28px; }
+      .emoji{ font-size:30px; }
+      .arabic{ font-size:16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="ball">⚽</div>
+    <div class="main-title">كرة القدم</div>
+    <div class="subtitle">اضغط على أي مربع لسماع النطق بالعربية</div>
+  </header>
+
+  <main class="sections">
+
+    <!-- Nouns -->
+    <section class="section" aria-labelledby="namesTitle">
+      <div class="section-head">
+        <h2 id="namesTitle">الأسماء</h2>
+        <div class="eng">Nouns</div>
+      </div>
+
+      <div class="grid">
+        <div class="tile noun" role="button" tabindex="0" data-ar="أنا">
+          <div class="emoji">👦</div>
+          <div class="arabic">أنا</div>
+          <div class="english">I</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="طالب">
+          <div class="emoji">🎒</div>
+          <div class="arabic">طالب</div>
+          <div class="english">student</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="الصف الرابع">
+          <div class="emoji">🏫</div>
+          <div class="arabic">الصف الرابع</div>
+          <div class="english">fourth grade</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="رياضتي">
+          <div class="emoji">🏅</div>
+          <div class="arabic">رياضتي</div>
+          <div class="english">my sport</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="كرة القدم">
+          <div class="emoji">⚽</div>
+          <div class="arabic">كرة القدم</div>
+          <div class="english">football</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="حصة التربية الرياضية">
+          <div class="emoji">🏃‍♂️</div>
+          <div class="arabic">حصة التربية الرياضية</div>
+          <div class="english">PE class</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="معلمي">
+          <div class="emoji">👨‍🏫</div>
+          <div class="arabic">معلمي</div>
+          <div class="english">my teacher</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="ملعب المدرسة">
+          <div class="emoji">🏟️</div>
+          <div class="arabic">ملعب المدرسة</div>
+          <div class="english">school field</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="وقت الفراغ">
+          <div class="emoji">⏰</div>
+          <div class="arabic">وقت الفراغ</div>
+          <div class="english">free time</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="أصدقائي الأوفياء">
+          <div class="emoji">👦👦</div>
+          <div class="arabic">أصدقائي الأوفياء</div>
+          <div class="english">my loyal friends</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="نادي">
+          <div class="emoji">🏛️</div>
+          <div class="arabic">نادي</div>
+          <div class="english">club</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="دولة الإمارات">
+          <div class="emoji">🇦🇪</div>
+          <div class="arabic">دولة الإمارات</div>
+          <div class="english">the UAE</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="نادي الشارقة الرياضي">
+          <div class="emoji">⭐⚪</div>
+          <div class="arabic">نادي الشارقة الرياضي</div>
+          <div class="english">Sharjah Sports Club</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="اللاعب المفضّل">
+          <div class="emoji">👟</div>
+          <div class="arabic">اللاعب المفضّل</div>
+          <div class="english">favorite player</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="محمد عبدالله">
+          <div class="emoji">👤</div>
+          <div class="arabic">محمد عبدالله</div>
+          <div class="english">Muhammad Abdullah</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="أخي">
+          <div class="emoji">👦</div>
+          <div class="arabic">أخي</div>
+          <div class="english">my brother</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="نادي العين">
+          <div class="emoji">💜</div>
+          <div class="arabic">نادي العين</div>
+          <div class="english">Al Ain Club</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="سفيان رحيمي">
+          <div class="emoji">👤</div>
+          <div class="arabic">سفيان رحيمي</div>
+          <div class="english">Sofian Rahimi</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="رقم 10">
+          <div class="emoji">🔢</div>
+          <div class="arabic">رقم 10</div>
+          <div class="english">number 10</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile noun" role="button" tabindex="0" data-ar="رقم 21">
+          <div class="emoji">🔢</div>
+          <div class="arabic">رقم 21</div>
+          <div class="english">number 21</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verbs -->
+    <section class="section" aria-labelledby="verbsTitle">
+      <div class="section-head">
+        <h2 id="verbsTitle">الأفعال</h2>
+        <div class="eng">Verbs</div>
+      </div>
+
+      <div class="grid">
+        <div class="tile verb" role="button" tabindex="0" data-ar="أتعلم">
+          <div class="emoji">📚</div>
+          <div class="arabic">أتعلم</div>
+          <div class="english">I learn</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile verb" role="button" tabindex="0" data-ar="أمارس">
+          <div class="emoji">⚽</div>
+          <div class="arabic">أمارس</div>
+          <div class="english">I practice</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile verb" role="button" tabindex="0" data-ar="يفضل">
+          <div class="emoji">❤️</div>
+          <div class="arabic">يفضل</div>
+          <div class="english">he prefers</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile verb" role="button" tabindex="0" data-ar="يرتدي">
+          <div class="emoji">👕</div>
+          <div class="arabic">يرتدي</div>
+          <div class="english">he wears</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile verb" role="button" tabindex="0" data-ar="تملأ">
+          <div class="emoji">🌟</div>
+          <div class="arabic">تملأ</div>
+          <div class="english">it fills</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Adjectives -->
+    <section class="section" aria-labelledby="adjsTitle">
+      <div class="section-head">
+        <h2 id="adjsTitle">الصفات</h2>
+        <div class="eng">Adjectives</div>
+      </div>
+
+      <div class="grid">
+        <div class="tile adj" role="button" tabindex="0" data-ar="مفضل">
+          <div class="emoji">⭐</div>
+          <div class="arabic">مُفَضَّل</div>
+          <div class="english">favorite</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile adj" role="button" tabindex="0" data-ar="مفيدة">
+          <div class="emoji">✅</div>
+          <div class="arabic">مفيدة</div>
+          <div class="english">useful</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile adj" role="button" tabindex="0" data-ar="حماسية">
+          <div class="emoji">🔥</div>
+          <div class="arabic">حماسية</div>
+          <div class="english">exciting</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile adj" role="button" tabindex="0" data-ar="واسع">
+          <div class="emoji">🏟️</div>
+          <div class="arabic">واسع</div>
+          <div class="english">wide</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile adj" role="button" tabindex="0" data-ar="رائع">
+          <div class="emoji">👍</div>
+          <div class="arabic">رائع</div>
+          <div class="english">wonderful</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile adj" role="button" tabindex="0" data-ar="أبيض ناصع">
+          <div class="emoji">⚪</div>
+          <div class="arabic">أبيض ناصع</div>
+          <div class="english">bright white</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile adj" role="button" tabindex="0" data-ar="بنفسجي">
+          <div class="emoji">💜</div>
+          <div class="arabic">بنفسجي</div>
+          <div class="english">purple</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile adj" role="button" tabindex="0" data-ar="أوفياء">
+          <div class="emoji">🤝</div>
+          <div class="arabic">أوفياء</div>
+          <div class="english">loyal</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Phrases -->
+    <section class="section" aria-labelledby="phrasesTitle">
+      <div class="section-head">
+        <h2 id="phrasesTitle">التراكيب والعبارات</h2>
+        <div class="eng">Phrases</div>
+      </div>
+
+      <div class="grid">
+        <div class="tile phr" role="button" tabindex="0" data-ar="أنا طالب في الصف الرابع">
+          <div class="emoji">🎒</div>
+          <div class="arabic">أنا طالب في الصف الرابع</div>
+          <div class="english">I am a student in the fourth grade</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile phr" role="button" tabindex="0" data-ar="رياضتي المفضلة هي كرة القدم">
+          <div class="emoji">⚽</div>
+          <div class="arabic">رياضتي المفضلة هي كرة القدم</div>
+          <div class="english">My favorite sport is football</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile phr" role="button" tabindex="0" data-ar="في حصة التربية الرياضية">
+          <div class="emoji">🏃‍♂️</div>
+          <div class="arabic">في حصة التربية الرياضية</div>
+          <div class="english">in PE class</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile phr" role="button" tabindex="0" data-ar="أتعلم مهارات كرة القدم">
+          <div class="emoji">📘</div>
+          <div class="arabic">أتعلم مهارات كرة القدم</div>
+          <div class="english">I learn football skills</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile phr" role="button" tabindex="0" data-ar="أمارس كرة القدم مع أصدقائي">
+          <div class="emoji">👦👦</div>
+          <div class="arabic">أمارس كرة القدم مع أصدقائي</div>
+          <div class="english">I play football with my friends</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile phr" role="button" tabindex="0" data-ar="ناديي المفضل في دولة الإمارات هو نادي الشارقة الرياضي">
+          <div class="emoji">⭐⚪</div>
+          <div class="arabic">ناديي المفضل في دولة الإمارات هو نادي الشارقة الرياضي</div>
+          <div class="english">My favorite club in the UAE is Sharjah Sports Club</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile phr" role="button" tabindex="0" data-ar="يرتدي لاعبو النادي اللون الأبيض الناصع">
+          <div class="emoji">👕⚪</div>
+          <div class="arabic">يرتدي لاعبو النادي اللون الأبيض الناصع</div>
+          <div class="english">The club players wear bright white</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile phr" role="button" tabindex="0" data-ar="أفضل كرة القدم على كرة السلة">
+          <div class="emoji">⚽🏀</div>
+          <div class="arabic">أفضل كرة القدم على كرة السلة</div>
+          <div class="english">I prefer football to basketball</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile phr" role="button" tabindex="0" data-ar="لاعبي المفضل هو محمد عبدالله رقم 10">
+          <div class="emoji">🔟</div>
+          <div class="arabic">لاعبي المفضل هو محمد عبدالله رقم 10</div>
+          <div class="english">My favorite player is Muhammad Abdullah number 10</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile phr" role="button" tabindex="0" data-ar="لاعبه المفضل هو سفيان رحيمي رقم 21">
+          <div class="emoji">2️⃣1️⃣</div>
+          <div class="arabic">لاعبه المفضل هو سفيان رحيمي رقم 21</div>
+          <div class="english">His favorite player is Sofian Rahimi number 21</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+
+        <div class="tile phr" role="button" tabindex="0" data-ar="كرة القدم تملأ القلب نشاطاً">
+          <div class="emoji">❤️⚽</div>
+          <div class="arabic">كرة القدم تملأ القلب نشاطاً</div>
+          <div class="english">Football fills the heart with energy</div>
+          <div class="hint">اضغط للاستماع</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // speak Arabic only when user clicks or activates a tile
+    function speakArabic(text){
+      if (!('speechSynthesis' in window)) {
+        console.warn('SpeechSynthesis not supported');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'ar-SA';
+      u.rate = 1;
+      u.pitch = 1;
+      u.volume = 1;
+
+      // try prefer an Arabic voice (if available)
+      const voices = window.speechSynthesis.getVoices();
+      if (voices && voices.length) {
+        for (const v of voices) {
+          if (v.lang && v.lang.startsWith('ar')) { u.voice = v; break; }
+        }
+      }
+
+      window.speechSynthesis.speak(u);
+    }
+
+    // attach handlers to tiles (click + keyboard)
+    document.querySelectorAll('.tile').forEach(tile => {
+      tile.addEventListener('click', () => {
+        const text = (tile.dataset.ar || tile.querySelector('.arabic')?.textContent || '').trim();
+        if (text) speakArabic(text);
+      });
+
+      tile.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const text = (tile.dataset.ar || tile.querySelector('.arabic')?.textContent || '').trim();
+          if (text) speakArabic(text);
+        }
+      });
+    });
+
+    // warm up voices on some browsers
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+  </script>
+</body>
+</html>
